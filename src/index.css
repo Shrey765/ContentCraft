@@ -11,4 +11,8 @@
     .sidebar-link.active {
         @apply bg-gray-600 text-white font-semibold;
     }
+
+    .label{
+        @apply block text-sm font-medium mb-1 pl-1 text-slate-300
+    }
 }
