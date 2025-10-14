@@ -4,8 +4,12 @@ import SideBar from "./components/sildeBar/SideBar.jsx"
 export default function Layout(){
     return(
         <>
-        <SideBar />
-        <Outlet />
+        <div className="flex h-screen overflow-hidden">
+            <SideBar />
+            <div className="flex-1 overflow-y-auto main-view active">
+                <Outlet />
+            </div>
+        </div>
         </>
     )
 }

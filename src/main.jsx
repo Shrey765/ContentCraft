@@ -3,13 +3,18 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Layout.jsx'
 import './index.css'
-import App from './App.jsx'
+import GenerateContent from './pages/GenerateContent.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    children: []
+    children: [
+      {
+        path: "/generate-content",
+        element: <GenerateContent /> 
+      }
+    ]
   }
 ])
 

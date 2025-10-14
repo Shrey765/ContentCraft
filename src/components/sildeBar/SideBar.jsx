@@ -4,7 +4,7 @@ import Container from '../container/Container';
 function SideBar(){
 
     return(
-        <div className="fixed top-0 left-0 h-screen bg-slate-800 text-white w-64 p-4 flex flex-col border-r border-slate-700">
+        <div className=" h-screen bg-slate-800 text-white w-64 p-4 flex flex-col">
             <div className="flex items-center">
                 <div className='bg-sky-500 h-[40px] flex items-center justify-center rounded-lg'>
                     <img src="/logo.png" alt="" className='w-10 p-1 rounded' />
