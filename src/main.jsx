@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Layout.jsx'
 import './index.css'
 import GenerateContent from './pages/GenerateContent.jsx'
+import Summary from './pages/Summary.jsx'
+import ImageStudio from './pages/ImageStudio.jsx'
 
 const router = createBrowserRouter([
   {
@@ -13,6 +15,14 @@ const router = createBrowserRouter([
       {
         path: "/generate-content",
         element: <GenerateContent /> 
+      },
+      {
+        path: "/summarize-text",
+        element: <Summary /> 
+      },
+      {
+        path: "/image-studio",
+        element: <ImageStudio />
       }
     ]
   }
