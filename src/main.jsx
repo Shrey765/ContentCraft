@@ -6,6 +6,7 @@ import './index.css'
 import GenerateContent from './pages/GenerateContent.jsx'
 import Summary from './pages/Summary.jsx'
 import ImageStudio from './pages/ImageStudio.jsx'
+import MyContent from './pages/MyContent.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/image-studio",
         element: <ImageStudio />
+      },
+      {
+        path: "/my-content",
+        element: <MyContent />
       }
     ]
   }
