@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Input, Select, TextArea, Button } from "../components"
 import { useSession } from "../context"
 
 export default function GenerateContent(){
 
-    const {sessions, addSession, updateSession, deleteSession} = useSession();
+    const {sessions, addSession} = useSession();
+
+    const location = useLocation();
+    const {state} = location;
+    const {session} = state || {};
+
 
     const [content, setContent] = useState("");
     const [type, setType] = useState("Blog Post");
@@ -15,10 +21,15 @@ export default function GenerateContent(){
         time: Date.now()
     }
 
+   useEffect(() => {
+    if (session) {
+      setContent(session.title || "");
+      setType(session.type || "Blog Post");
+    }
+  }, [session]);
+
     const handleSubmit = () => {
-        console.log(newSession);
         addSession(newSession)
-        console.log(sessions)
     }
 
     
@@ -40,6 +51,7 @@ export default function GenerateContent(){
                                 placeholder="e.g., A blog post about the future of AI..."
                                 rows={5}
                                 className="focus:ring-2 w-full resize-none"
+                                value={content}
                                 onChange={(e) => setContent(e.target.value)}
                             />
                         </div>
@@ -47,6 +59,7 @@ export default function GenerateContent(){
                         <div>
                             <Select 
                                 label="Content Type"
+                                value={type}
                                 options={[
                                     {value: 'blog', label: 'Blog Post'},
                                     {value: 'twitter post', label: 'Social Media Post (Twitter)'},

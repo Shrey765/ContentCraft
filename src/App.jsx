@@ -1,5 +1,5 @@
-import { useState, useId } from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { useState} from 'react'
+import { createBrowserRouter, RouterProvider, } from 'react-router-dom'
 import Layout from './Layout.jsx'
 import './App.css'
 import GenerateContent from './pages/GenerateContent.jsx'
@@ -9,7 +9,6 @@ import MyContent from './pages/MyContent.jsx'
 import { SessionProvider } from './context/sessionContext.js'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   const router = createBrowserRouter([
       {
@@ -43,18 +42,12 @@ function App() {
       setSession((prev) => [{id: id, ...session}, ...prev]);
     }
     
-    const updateSession = (id, session) => {
-      setSession((prev) => prev.map((prevSession) => (
-        prevSession.id === id ? session : prevSession
-      )));
-    }
-    
     const deleteSession = (id) => {
       setSession((prev) => prev.filter((prevSession) => prevSession.id !== id));
     }
 
   return (
-    <SessionProvider value={{sessions, addSession, updateSession, deleteSession}}>
+    <SessionProvider value={{sessions, addSession, deleteSession}}>
       <RouterProvider router={router} />
     </SessionProvider>
   )
