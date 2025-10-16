@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Input, Select, TextArea, Button } from "../components"
 import { useSession } from "../context"
 
@@ -5,6 +6,22 @@ export default function GenerateContent(){
 
     const {sessions, addSession, updateSession, deleteSession} = useSession();
 
+    const [content, setContent] = useState("");
+    const [type, setType] = useState("Blog Post");
+    
+    const newSession = {
+        title: content,
+        type: type,
+        time: Date.now()
+    }
+
+    const handleSubmit = () => {
+        console.log(newSession);
+        addSession(newSession)
+        console.log(sessions)
+    }
+
+    
 
     return(
         <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center px-4 py-8 sm:px-6 lg:px-16">
@@ -23,6 +40,7 @@ export default function GenerateContent(){
                                 placeholder="e.g., A blog post about the future of AI..."
                                 rows={5}
                                 className="focus:ring-2 w-full resize-none"
+                                onChange={(e) => setContent(e.target.value)}
                             />
                         </div>
 
@@ -31,13 +49,13 @@ export default function GenerateContent(){
                                 label="Content Type"
                                 options={[
                                     {value: 'blog', label: 'Blog Post'},
-                                    {value: 'twitter', label: 'Social Media Post (Twitter)'},
-                                    {value: 'instagram', label: 'Social Media Post (Instagram)'},
-                                    {value: 'linkedin', label: 'Social Media Post (LinkedIn)'},
+                                    {value: 'twitter post', label: 'Social Media Post (Twitter)'},
+                                    {value: 'instagram post', label: 'Social Media Post (Instagram)'},
+                                    {value: 'linkdin post', label: 'Social Media Post (LinkedIn)'},
                                     {value: 'email', label: 'Email Campaign'},
                                     {value: 'ad', label: 'Ad Copy'}
                                 ]}
-                                
+                                onChange={(e) => setType(e.target.value)}
                             />
                         </div>
 
@@ -123,7 +141,7 @@ export default function GenerateContent(){
                                     textColor="text-white"
                                     className="p-2 hover:bg-slate-700 transition-color"
                                     title="save"
-                                    
+                                    onClick={handleSubmit}
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />

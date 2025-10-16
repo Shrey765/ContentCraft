@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useId } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Layout.jsx'
 import './App.css'
@@ -39,8 +39,8 @@ function App() {
     const [sessions, setSession] = useState([]);
     
     const addSession = (session) => {
-      const id = useId();
-      setSession((prev) => [{id: id, session}, ...prev]);
+      const id = crypto.randomUUID();
+      setSession((prev) => [{id: id, ...session}, ...prev]);
     }
     
     const updateSession = (id, session) => {
